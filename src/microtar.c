@@ -27,6 +27,18 @@
 
 #include "microtar.h"
 
+#ifndef PLATFORM_HOST
+#ifdef FS_STACK
+#include "FS.h"
+#endif
+#define FILE FS_FILE
+#define fopen FS_FOpen
+#define fclose FS_FClose
+#define fread FS_FRead
+#define fwrite FS_FWrite
+#define fseek FS_FSeek
+#endif
+
 typedef struct {
   char name[100];
   char mode[8];
